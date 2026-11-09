@@ -14,7 +14,7 @@ disableKinds = ["taxonomy", "term"]
   staleDays = 365
   # Search-engine ownership tokens (public by design). Rendered as <meta> tags on every page.
   [params.verification]
-    google = ""
+    google = "X831KdG-7BV0yxloB6k98mptq3xycLVNq9n6XZ4woCw"
     bing = ""
     naver = ""
 
