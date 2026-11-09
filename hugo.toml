@@ -12,6 +12,11 @@ disableKinds = ["taxonomy", "term"]
   # Shown in llms.txt and page footers only when set.
   sponsor = "https://github.com/sponsors/seolcu"
   staleDays = 365
+  # Search-engine ownership tokens (public by design). Rendered as <meta> tags on every page.
+  [params.verification]
+    google = ""
+    bing = ""
+    naver = ""
 
 [outputFormats]
   [outputFormats.markdown]

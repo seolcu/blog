@@ -18,6 +18,11 @@
 <meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta name="color-scheme" content="light dark">
+{{- with site.Params.verification }}
+{{- with .google }}<meta name="google-site-verification" content="{{ . }}">{{ end }}
+{{- with .bing }}<meta name="msvalidate.01" content="{{ . }}">{{ end }}
+{{- with .naver }}<meta name="naver-site-verification" content="{{ . }}">{{ end }}
+{{- end }}
 {{- $css := resources.Get "css/site.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 {{- if .IsPage }}
