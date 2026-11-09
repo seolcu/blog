@@ -1,0 +1,20 @@
+{{- /* Metadata box shown at the top of every note and project. */ -}}
+{{- $p := .Params }}
+<dl class="facts">
+  <div><dt>Status</dt><dd><span class="badge s-{{ $p.status }}">{{ $p.status }}</span>
+    {{- with $p.superseded_by }} → see <a href="{{ (site.GetPage .).RelPermalink }}">{{ (site.GetPage .).Title }}</a>{{ end }}</dd></div>
+  {{- with $p.verified_at }}
+  {{- $t := time . }}
+  {{- $days := div (sub now.Unix $t.Unix) 86400 }}
+  <div><dt>Verified</dt><dd><time datetime="{{ $t.Format "2006-01-02" }}">{{ $t.Format "2006-01-02" }}</time>
+    <span class="muted">({{ $days }} days before this build{{ if gt $days site.Params.staleDays }}; may be outdated{{ end }})</span></dd></div>
+  {{- end }}
+  {{- with $p.verified_how }}<div><dt>How</dt><dd>{{ . | markdownify }}</dd></div>{{ end }}
+  {{- with $p.applies_to }}
+  <div><dt>Applies to</dt><dd><ul class="kv">{{ range $k, $v := . }}<li><code>{{ $k }}</code> {{ $v }}</li>{{ end }}</ul></dd></div>
+  {{- end }}
+  {{- with $p.repo }}<div><dt>Repository</dt><dd><a href="{{ . }}">{{ strings.TrimPrefix "https://" . }}</a></dd></div>{{ end }}
+  {{- with $p.homepage }}<div><dt>Website</dt><dd><a href="{{ . }}">{{ strings.TrimPrefix "https://" . }}</a></dd></div>{{ end }}
+  {{- with $p.license }}<div><dt>License</dt><dd>{{ . }}</dd></div>{{ end }}
+  {{- with $p.source }}<div><dt>Canonical source</dt><dd><a href="{{ . }}">{{ strings.TrimPrefix "https://" . }}</a></dd></div>{{ end }}
+</dl>

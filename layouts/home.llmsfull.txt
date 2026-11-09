@@ -1,0 +1,10 @@
+# {{ site.Title }} — full text
+
+> {{ site.Params.description }}
+
+Generated {{ now.Format "2006-01-02" }}. Index: {{ "/llms.txt" | absURL }}
+{{ range (where site.RegularPages "Section" "in" (slice "notes" "projects")).ByTitle }}
+---
+
+{{ partial "page-md.md" . }}
+{{ end }}

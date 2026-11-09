@@ -1,0 +1,11 @@
+{{- /* Table of pages: title + summary, status, verified date. */ -}}
+<ul class="entries">
+{{- range . }}
+  <li>
+    <a class="title" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+    <span class="badge s-{{ .Params.status }}">{{ .Params.status }}</span>
+    {{- with .Params.verified_at }} <span class="muted small">verified {{ (time .).Format "2006-01-02" }}</span>{{ end }}
+    {{ with .Params.summary }}<p>{{ . | markdownify }}</p>{{ end }}
+  </li>
+{{- end }}
+</ul>

@@ -1,0 +1,24 @@
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+Author: {{ site.Params.author }} — {{ site.Params.github }}
+{{ with site.Params.sponsor }}Support: {{ . }}
+{{ end }}
+How to read this site:
+- Every page has a Markdown twin at `<page URL>index.md`; the links below point to those.
+- `status` is one of: working (verified to work), broken (known not to work any more), superseded (a newer page replaces it), archived (no longer maintained by the author; may still be correct). Projects use: active, experimental, archived.
+- `verified` is the date the author last confirmed the content on the stated environment. Prefer the newest verified page when two disagree.
+- Project pages are summaries; the linked repository README is the canonical source for usage.
+- Full text of every page in one file: {{ "/llms-full.txt" | absURL }}. Structured metadata: {{ "/index.json" | absURL }}.
+
+## Notes
+
+{{ range (where site.RegularPages "Section" "notes").ByTitle -}}
+- [{{ .Title }}]({{ (.OutputFormats.Get "markdown").Permalink }}): {{ .Params.summary }} [status: {{ .Params.status }}{{ with .Params.verified_at }}; verified {{ (time .).Format "2006-01-02" }}{{ end }}]
+{{ end }}
+## Projects
+
+{{ range (where site.RegularPages "Section" "projects").ByTitle -}}
+- [{{ .Title }}]({{ (.OutputFormats.Get "markdown").Permalink }}): {{ .Params.summary }} [status: {{ .Params.status }}; repo {{ .Params.repo }}]
+{{ end -}}

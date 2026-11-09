@@ -1,0 +1,9 @@
+{{ define "main" }}
+<section class="intro">
+  {{ .Content }}
+</section>
+<h2><a href="{{ "/notes/" | relURL }}">Notes</a></h2>
+{{ partial "list.html" (where site.RegularPages "Section" "notes").ByTitle }}
+<h2><a href="{{ "/projects/" | relURL }}">Projects</a></h2>
+{{ partial "list.html" (where site.RegularPages "Section" "projects").ByTitle }}
+{{ end }}

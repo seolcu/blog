@@ -1,0 +1,55 @@
+baseURL = "https://blog.seolcu.com/"
+languageCode = "en"
+title = "seolcu notes"
+enableRobotsTXT = true
+enableGitInfo = true
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  description = "Verified fixes and setup notes for Linux, self-hosting and home-lab operations, plus an index of seolcu's open-source projects. Every page states its status, the environment it was verified on, and when."
+  author = "Gyuwon Seol (seolcu)"
+  github = "https://github.com/seolcu"
+  # Shown in llms.txt and page footers only when set.
+  sponsor = ""
+  staleDays = 365
+
+[outputFormats]
+  [outputFormats.markdown]
+    mediaType = "text/markdown"
+    baseName = "index"
+    isPlainText = true
+    rel = "alternate"
+    permalinkable = false
+  [outputFormats.llms]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
+    rel = "alternate"
+  [outputFormats.llmsfull]
+    mediaType = "text/plain"
+    baseName = "llms-full"
+    isPlainText = true
+    rel = "alternate"
+  [outputFormats.json]
+    mediaType = "application/json"
+    baseName = "index"
+    isPlainText = true
+
+[mediaTypes]
+  [mediaTypes."text/markdown"]
+    suffixes = ["md"]
+
+[outputs]
+  home = ["html", "rss", "json", "llms", "llmsfull"]
+  section = ["html", "rss"]
+  page = ["html", "markdown"]
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    style = "github"
+  [markup.goldmark.renderer]
+    unsafe = false
+
+[sitemap]
+  changeFreq = "monthly"

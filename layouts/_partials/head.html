@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $title := cond .IsHome site.Title (printf "%s · %s" (.Title | markdownify | plainify) site.Title) }}
+<title>{{ $title }}</title>
+{{- $desc := or .Params.summary .Description site.Params.description }}
+<meta name="description" content="{{ $desc }}">
+<meta name="author" content="{{ site.Params.author }}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- range .AlternativeOutputFormats }}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}">
+{{- end }}
+{{- if not .IsHome }}
+<link rel="alternate" type="text/plain" title="llms.txt" href="{{ "/llms.txt" | absURL }}">
+{{- end }}
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta name="color-scheme" content="light dark">
+{{- $css := resources.Get "css/site.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- if .IsPage }}
+{{- $ld := dict
+  "@context" "https://schema.org"
+  "@type" (cond (eq .Section "projects") "SoftwareSourceCode" "TechArticle")
+  "headline" (.Title | markdownify | plainify)
+  "name" (.Title | markdownify | plainify)
+  "description" $desc
+  "url" .Permalink
+  "inLanguage" "en"
+  "datePublished" (.Date.Format "2006-01-02")
+  "dateModified" (.Lastmod.Format "2006-01-02")
+  "author" (dict "@type" "Person" "name" site.Params.author "url" site.Params.github)
+}}
+{{- with .Params.keywords }}{{ $ld = merge $ld (dict "keywords" (delimit . ", ")) }}{{ end }}
+{{- with .Params.source }}{{ $ld = merge $ld (dict "isBasedOn" .) }}{{ end }}
+{{- with .Params.repo }}{{ $ld = merge $ld (dict "codeRepository" .) }}{{ end }}
+{{- with .Params.license }}{{ $ld = merge $ld (dict "license" .) }}{{ end }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end }}

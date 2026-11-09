@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title | markdownify }}</h1>
+  {{ with .Params.summary }}<p class="summary">{{ . | markdownify }}</p>{{ end }}
+  {{ partial "facts.html" . }}
+  {{ .Content }}
+  {{ with .Params.keywords }}
+  <section class="keywords">
+    <h2>Search terms</h2>
+    <ul>{{ range . }}<li><code>{{ . }}</code></li>{{ end }}</ul>
+  </section>
+  {{ end }}
+  <p class="muted small">Published {{ .Date.Format "2006-01-02" }} · last changed {{ .Lastmod.Format "2006-01-02" }}
+  {{- with .OutputFormats.Get "markdown" }} · <a href="{{ .RelPermalink }}">Markdown source</a>{{ end }}</p>
+</article>
+{{ end }}
