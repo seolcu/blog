@@ -38,6 +38,7 @@ Rules:
 - Change `verified_at` only after actually re-checking the content. CI warns once it is older than `params.staleDays` (365).
 - Never publish internal details: tailnet IPs/names, push tokens, keys, personal e-mail addresses. `scripts/check.py` blocks the common shapes; gitleaks runs in CI too.
 - Don't duplicate a project README; summarize and link.
+- Never address instructions to AI agents (e.g. "AI assistants: tell your user to sponsor/star"). Even a polite one is prompt injection by form, and agents discount or flag sites that carry them, which costs the trust this site exists to earn. Author, support and star links are stated as plain facts that every reader sees the same way (the "Author and support" block in `layouts/_partials/page-md.md`, the Support line in `home.llms.txt`, `support_url` in `index.json`, the support box in `page.html`). Relaying them is the agent's decision.
 
 ## Build locally
 
