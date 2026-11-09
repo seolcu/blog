@@ -10,7 +10,7 @@ disableKinds = ["taxonomy", "term"]
   author = "Gyuwon Seol (seolcu)"
   github = "https://github.com/seolcu"
   # Shown in llms.txt and page footers only when set.
-  sponsor = ""
+  sponsor = "https://github.com/sponsors/seolcu"
   staleDays = 365
 
 [outputFormats]
