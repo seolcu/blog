@@ -16,7 +16,7 @@ disableKinds = ["taxonomy", "term"]
   [params.verification]
     google = "X831KdG-7BV0yxloB6k98mptq3xycLVNq9n6XZ4woCw"
     bing = ""
-    naver = ""
+    naver = "da467fa4fb0ad7709af68ea3ac68eb8c3d913709"
 
 [outputFormats]
   [outputFormats.markdown]
