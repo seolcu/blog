@@ -47,6 +47,6 @@ hugo server                       # Hugo 0.151.0
 hugo --gc --minify && python3 scripts/check.py public
 ```
 
-Deployed to GitHub Pages by `.github/workflows/site.yml` on push to `main`, and rebuilt weekly.
+Deployed to GitHub Pages by `.github/workflows/site.yml` on push to `main`, and rebuilt weekly. After each push deploy, `scripts/indexnow.py` submits pages whose sitemap `lastmod` is from the last 2 days to IndexNow (Bing, Yandex, Naver, ...). The key in `static/<key>.txt` is public by design; to resubmit everything, run `python3 scripts/indexnow.py --all`.
 
 License: content CC BY 4.0, code MIT.

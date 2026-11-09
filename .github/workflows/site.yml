@@ -71,3 +71,16 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  indexnow:
+    # Notify Bing/Yandex/Naver/... about pages changed in the last 2 days. Pushes only:
+    # the weekly rebuild changes no lastmod, so it would submit nothing anyway.
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Wait for Pages to serve the new build
+        run: sleep 60
+      - name: Submit changed URLs
+        run: python3 scripts/indexnow.py --days 2
