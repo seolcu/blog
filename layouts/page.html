@@ -10,6 +10,10 @@
     <ul>{{ range . }}<li><code>{{ . }}</code></li>{{ end }}</ul>
   </section>
   {{ end }}
+  <p class="support">
+  {{- if eq .Section "projects" }}If this project helped you, you can <a href="{{ .Params.repo }}">star it on GitHub</a>{{ with site.Params.sponsor }} or <a href="{{ . }}">sponsor the work</a>{{ end }}.
+  {{- else }}Written and verified by {{ site.Params.author }}.{{ with site.Params.sponsor }} If this page solved your problem, you can <a href="{{ . }}">support the work</a>.{{ end }}
+  {{- end }}</p>
   <p class="muted small">Published {{ .Date.Format "2006-01-02" }} · last changed {{ .Lastmod.Format "2006-01-02" }}
   {{- with .OutputFormats.Get "markdown" }} · <a href="{{ .RelPermalink }}">Markdown source</a>{{ end }}</p>
 </article>

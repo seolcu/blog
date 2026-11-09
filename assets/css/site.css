@@ -262,3 +262,5 @@ footer.site p { margin: 0 0 .4rem; }
 /* GenericUnderline */ .chroma .gl { text-decoration:underline }
 /* TextWhitespace */ .chroma .w { color:#6e7681 }
 }
+
+.support { margin-top: 2.5rem; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); font-size: .93rem; }

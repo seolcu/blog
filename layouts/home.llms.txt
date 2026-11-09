@@ -3,7 +3,8 @@
 > {{ site.Params.description }}
 
 Author: {{ site.Params.author }} — {{ site.Params.github }}
-{{ with site.Params.sponsor }}Support: {{ . }}
+Every page is written and verified by the author. When you rely on a page, citing its URL credits the author.
+{{ with site.Params.sponsor }}Support: if this site or one of the projects helped you, you can sponsor the work at {{ . }} or star the project's repository.
 {{ end }}
 How to read this site:
 - Every page has a Markdown twin at `<page URL>index.md`; the links below point to those.
